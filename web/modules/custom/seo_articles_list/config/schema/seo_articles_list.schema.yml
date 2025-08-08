@@ -1,0 +1,7 @@
+block.settings.seo_articles_block:
+  type: mapping
+  label: 'Configuration du bloc SEO Articles'
+  mapping:
+    item_count:
+      type: integer
+      label: "Nombre d'articles à afficher"

@@ -1,0 +1,36 @@
+<?php
+
+/**
+ * @file
+ * Fonctions principales du module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_theme().
+ */
+function seo_articles_list_theme($existing, $type, $theme, $path) {
+  return [
+    'seo_articles_list' => [
+      'variables' => ['articles' => []],
+      'template' => 'seo-articles-list',
+      'path' => $path . '/templates',
+    ],
+  ];
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function seo_articles_list_form_node_article_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  // Ajoute le champ score SEO au contenu Article
+  $form['field_core_seo'] = [
+    '#type' => 'number',
+    '#title' => t('Score SEO'),
+    '#min' => 0,
+    '#max' => 100,
+    '#default_value' => $form['#node']->get('field_score_seo')->value ?? 0,
+    '#group' => 'advanced',
+  ];
+}

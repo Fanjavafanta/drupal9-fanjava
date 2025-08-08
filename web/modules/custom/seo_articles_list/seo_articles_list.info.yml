@@ -1,0 +1,5 @@
+name: SEO Articles List
+type: module
+description: 'Affiche les derniers articles avec leur score SEO.'
+core_version_requirement: ^9
+package: Custom

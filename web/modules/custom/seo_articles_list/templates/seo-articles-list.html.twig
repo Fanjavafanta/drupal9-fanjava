@@ -1,0 +1,32 @@
+{#
+/**
+ * @file
+ * Template pour l'affichage des articles SEO.
+ */
+#}
+<div class="seo-articles-list">
+  <h3>{{ 'Derniers articles'|t }}</h3>
+  
+  <ul>
+    {% for article in articles %}
+      <li>
+        <div class="article-container">
+          <div class="article-title-row">
+            <a href="{{ article.url }}">{{ article.title }}</a>
+          </div>
+          
+          <div class="article-meta-row">
+            <div class="seo-score-container">
+              <span class="seo-score-label">{{ 'Score SEO:'|t }}</span>
+              <span class="seo-score-value {{ article.score_class }}">
+                {{ article.score }}
+              </span>
+            </div>
+          </div>
+        </div>
+      </li>
+    {% else %}
+      <li class="no-content">{{ 'Aucun article disponible'|t }}</li>
+    {% endfor %}
+  </ul>
+</div>

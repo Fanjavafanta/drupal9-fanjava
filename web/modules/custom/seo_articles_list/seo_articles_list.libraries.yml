@@ -1,0 +1,5 @@
+seo_articles_list_block:
+  version: 1.0
+  css:
+    theme:
+      css/seo-articles-list.css: {}
