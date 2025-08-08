@@ -1,0 +1,7 @@
+name: Custom Dashboard
+type: module
+description: 'Tableau de bord de reporting personnalisé.'
+core_version_requirement: ^9
+package: Custom
+dependencies:
+  - drupal:node

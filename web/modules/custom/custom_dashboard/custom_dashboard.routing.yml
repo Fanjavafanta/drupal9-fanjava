@@ -1,0 +1,21 @@
+custom_dashboard.dashboard:
+  path: '/admin/dashboard'
+  defaults:
+    _title: 'Tableau de bord'
+    _controller: '\Drupal\custom_dashboard\Controller\DashboardController::dashboard'
+  requirements:
+    _permission: 'access content'
+    
+custom_dashboard.purge_cache:
+  path: '/admin/dashboard/purge-cache'
+  defaults:
+    _controller: '\Drupal\custom_dashboard\Controller\DashboardController::purgeCache'
+  requirements:
+    _permission: 'access content'
+    
+custom_dashboard.seo_check:
+  path: '/admin/dashboard/seo-check'
+  defaults:
+    _controller: '\Drupal\custom_dashboard\Controller\DashboardController::seoCheck'
+  requirements:
+    _permission: 'access content'

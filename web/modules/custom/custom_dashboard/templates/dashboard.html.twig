@@ -1,0 +1,39 @@
+<div class="dashboard">
+  <h1>{{ 'Tableau de bord de reporting'|t }}</h1>
+  
+  <div class="dashboard-actions">
+    <div class="action-buttons">
+      {{ purge_cache_link }}
+      {{ seo_check_link }}
+    </div>
+  </div>
+  
+  <div class="dashboard-content">
+    <table class="dashboard-table">
+      <thead>
+        <tr>
+          {% for column in header %}
+            <th>{{ column }}</th>
+          {% endfor %}
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in rows %}
+          <tr>
+            <td>{{ row.id }}</td>
+            <td>{{ row.title }}</td>
+            <td>{{ row.author }}</td>
+            <td>{{ row.created }}</td>
+            <td>{{ row.seo_score }}</td>
+            <td>{{ row.status }}</td>
+            <td>{{ row.edit }}</td>
+          </tr>
+        {% else %}
+          <tr>
+            <td colspan="7">{{ 'Aucun contenu disponible'|t }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
