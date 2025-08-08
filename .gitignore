@@ -1,0 +1,8 @@
+/web/sites/default/files
+/web/sites/*/settings.php
+/vendor/
+/node_modules/
+/.env
+/.ddev/
+/backups/
+/logs/
