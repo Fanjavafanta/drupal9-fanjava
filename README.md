@@ -109,16 +109,37 @@ Sécurité
   - SEO Checklist
   - Migrate Tools
 - Module custom :
-  - `seo_block` : bloc listant les 5 derniers articles avec champ SEO
+  - `seo_articles_list` : bloc listant les 5 derniers articles avec champ SEO
+  - `custom_dashboard` : Tableau de bord & Reporting
 
 ### Plan de migration (Checklist)
 
-- [x] Vérification des modules actifs
-- [x] Mise à jour du core via Composer
-- [x] Migration du thème personnalisé
-- [x] Test et correction des modules custom et contrib
-- [x] Exécution des updates (`drush updb`)
-- [x] Vider le cache (`drush cr`)
+## 1. Préparation
+- [x] Sauvegarde complète de la base de données et des fichiers (`core/`, `modules/`, `themes/`, `sites/default/files`).
+- [x] Création d’un environnement de **staging** identique à la production pour effectuer les tests.
+- [x] Vérification de la version de PHP et des extensions requises pour la nouvelle version de Drupal.
+
+## 2. Analyse de compatibilité
+- [x] Liste et vérification des **modules contrib** : mise à jour ou remplacement si non compatibles.
+- [x] Analyse des **modules custom** avec **Drupal Rector** pour préparer la compatibilité.
+- [x] Analyse et adaptation du **thème personnalisé** (Twig, libraries, yml…).
+
+## 3. Migration
+- [x] Mettre à jour **Composer** et ses dépendances :
+- [x] Mise à jour des modules contrib et custom via Composer.
+- [x] Mise à jour du core Drupal à la version cible.
+- [x] Exécution des mises à jour de la base de données :
+- [x] Nettoyage des caches :
+
+## 4. Tests et validation
+- [x] Vérifier le bon fonctionnement des pages et fonctionnalités clés.
+- [x] Tester les formulaires, les blocs, les vues et les performances.
+- [x] Analyser les logs (`admin/reports/dblog` ou `drush ws`).
+
+## 5. Déploiement en production
+- [x] Sauvegarde de production avant déploiement.
+- [x] Application de la mise à jour sur le serveur live.
+- [x] Test post-déploiement et surveillance.
 
 ## Partie 1 – Modélisation & Migration 
 
@@ -527,18 +548,20 @@ Ajoute la ligne suivante :
 ```bash
 0 2 * * * /chemin/vers/drupal-backup-cron.sh >> /var/log/drupal-backup.log 2>&1
 ```
-#### Checklist de sécurité
 
- - [x] Headers de sécurité configurés (CSP, HSTS, X-Frame-Options, etc.)
- - [x] HTTPS activé avec certificat valide
- - [x] Configuration PHP durcie (fonctions dangereuses désactivées)
- - [x] Permissions fichiers correctes (644 pour fichiers, 755 pour dossiers)
- - [x] Base de données sécurisée (utilisateur dédié, mot de passe fort)
- - [x] Modules de sécurité installés et configurés
- - [x] Logs de sécurité configurés et monitorés
- - [x] Fail2Ban configuré pour bloquer les attaques
- - [x] Sauvegardes automatisées et testées
- - [x] Mises à jour de sécurité automatiques ou planifiées
+#### ✅ Checklist de sécurité Drupal
+
+- [x] **Headers HTTP de sécurité** configurés (CSP, HSTS, X-Frame-Options, X-Content-Type-Options, Referrer-Policy, etc.)
+- [x] **HTTPS** activé avec certificat SSL/TLS valide (Let’s Encrypt ou autre) et configuration TLS forte
+- [x] **Configuration PHP durcie** : fonctions dangereuses désactivées (`exec`, `shell_exec`, etc.), `display_errors` désactivé en production
+- [x] **Permissions fichiers** sécurisées (`644` pour les fichiers, `755` pour les dossiers) et interdiction d’écriture sur le core
+- [x] **Base de données sécurisée** : utilisateur dédié avec droits limités, mot de passe fort et accès restreint
+- [x] **Modules de sécurité** (ex. : [Security Kit](https://www.drupal.org/project/seckit), [Captcha](https://www.drupal.org/project/captcha)) installés et configurés
+- [x] **Journalisation et monitoring** activés (logs Drupal, syslog, SIEM si possible)
+- [x] **Fail2Ban** ou équivalent configuré pour bloquer les IP après tentatives répétées d’accès non autorisé
+- [x] **Sauvegardes automatisées** de la base et des fichiers, régulièrement testées pour restauration
+- [x] **Mises à jour de sécurité** appliquées rapidement (core, modules, thèmes)
+
  
 #### Résumé des éléments critiques
 Headers de sécurité essentiels
