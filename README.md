@@ -114,29 +114,29 @@ Sécurité
 
 ### Plan de migration (Checklist)
 
-## 1. Préparation
+#### 1. Préparation
 - [x] Sauvegarde complète de la base de données et des fichiers (`core/`, `modules/`, `themes/`, `sites/default/files`).
 - [x] Création d’un environnement de **staging** identique à la production pour effectuer les tests.
 - [x] Vérification de la version de PHP et des extensions requises pour la nouvelle version de Drupal.
 
-## 2. Analyse de compatibilité
+#### 2. Analyse de compatibilité
 - [x] Liste et vérification des **modules contrib** : mise à jour ou remplacement si non compatibles.
 - [x] Analyse des **modules custom** avec **Drupal Rector** pour préparer la compatibilité.
 - [x] Analyse et adaptation du **thème personnalisé** (Twig, libraries, yml…).
 
-## 3. Migration
+#### 3. Migration
 - [x] Mettre à jour **Composer** et ses dépendances :
 - [x] Mise à jour des modules contrib et custom via Composer.
 - [x] Mise à jour du core Drupal à la version cible.
 - [x] Exécution des mises à jour de la base de données :
 - [x] Nettoyage des caches :
 
-## 4. Tests et validation
+#### 4. Tests et validation
 - [x] Vérifier le bon fonctionnement des pages et fonctionnalités clés.
 - [x] Tester les formulaires, les blocs, les vues et les performances.
 - [x] Analyser les logs (`admin/reports/dblog` ou `drush ws`).
 
-## 5. Déploiement en production
+#### 5. Déploiement en production
 - [x] Sauvegarde de production avant déploiement.
 - [x] Application de la mise à jour sur le serveur live.
 - [x] Test post-déploiement et surveillance.
